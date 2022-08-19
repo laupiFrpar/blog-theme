@@ -4,7 +4,7 @@
   "description": "Lopi Theme for Grav CMS",
   "main": "index.js",
   "scripts": {
-    "copy-bootstrap-js": "cp node_modules/bootstrap/dist/js/bootstrap.min.js js/bootstrap.min.js",
+    "copy-vendor": "./bin/copy-vendor",
     "compile": "wt compile scss -b css --source-map=false --style=compressed",
     "lint:style": "stylelint 'scss/*.scss'",
     "watch": "wt watch scss scss/vendor -b css --source-map=false --style=nested"
@@ -16,6 +16,7 @@
     "eslint": "^8.16.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
+    "highlight.js": "^11.6.0",
     "stylelint": "^14.8.5",
     "stylelint-config-standard-scss": "^4.0.0"
   },

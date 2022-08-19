@@ -2,13 +2,37 @@
 
 {% set blog = page.find(header_var('blog_url')|defined(theme_var('blog-page'))) %}
 {% set collection = page.collection() %}
+{% set base_url = base_url|default(page.url) %}
+{% set pagination = pagination|default(page.collection.params.pagination) %}
 
 {% block body %}
   {{ block("content_blog") }}
 {% endblock %}
 
 {% block content_blog_body %}
-  {% for child in collection %}
-    {% include 'partials/blog/list.html.twig' with {page: child} %}
-  {% endfor %}
+  <h1 class="page-header">Articles</h1>
+  <ul class="list-unstyled">
+    {% for child in collection %}
+      {% include 'partials/blog/list.html.twig' with {page: child} %}
+    {% endfor %}
+  </ul>
+
+  <nav aria-label="Page navigation" class="d-flex justify-content-between">
+    <div>
+      {% if pagination.hasPrev %}
+        {% set url = (base_url ~ pagination.params ~ pagination.prevUrl)|replace({'//':'/'}) %}
+        <span><i class="fa-solid fa-hand-point-left"></i></span>
+        <a rel="prev" href="{{ url }}" class="link-dark">plus récent</a>
+      {% endif %}
+    </div>
+
+    <div>
+      {% if pagination.hasNext %}
+        {% set url = (base_url ~ pagination.params ~ pagination.nextUrl)|replace({'//':'/'}) %}
+        <a rel="next" href="{{ url }}" class="link-dark">plus vieux</a>
+        <span><i class="fa-solid fa-hand-point-right"></i></span>
+      {% endif %}
+    </div>
+  </nav>
+
 {% endblock %}

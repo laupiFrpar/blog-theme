@@ -1,0 +1,9 @@
+#!/bin/bash
+cp node_modules/bootstrap/dist/js/bootstrap.min.js js/bootstrap.min.js
+cp vendor/highlight/highlight.min.js js/highlight.min.js
+
+if [ ! -d css/vendor/highlight ]; then
+    mkdir -p css/vendor/highlight
+fi
+
+cp vendor/highlight/styles/github-dark-dimmed.min.css css/vendor/highlight/github-dark-dimmed.min.css

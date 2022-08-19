@@ -16039,3 +16039,11 @@ blockquote {
     blockquote cite:before {
       content: "—";
       padding-right: 1rem; }
+
+h1.page-header::after, .page-header.h1::after {
+  content: "";
+  display: block;
+  width: 4em;
+  margin-top: 0.7em;
+  margin-bottom: 1.5em;
+  border-bottom: .125em solid forestgreen; }

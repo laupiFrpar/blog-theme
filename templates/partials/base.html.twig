@@ -14,6 +14,7 @@
     {% endblock %}
     {% block stylesheets %}
       {% do assets.addCss('theme://css/theme.css', 98) %}
+      {% do assets.addCss('theme://css/vendor/highlight/github-dark-dimmed.min.css', 98) %}
     {% endblock %}
 
     {% block assets deferred %}
@@ -23,9 +24,9 @@
   </head>
   <body>
     {% block header %}
-      <nav class="navbar bg-light">
-        <div class="container-fluid">
-          <a href="#" class="navbar-brand">
+      <nav class="navbar">
+        <div class="container">
+          <a href="/" class="navbar-brand">
             {{ config.site.title|e }}
           </a>
         </div>
@@ -42,7 +43,12 @@
 
     {% block javascripts %}
       {% do assets.addJs('theme://js/bootstrap.min.js') %}
+      {% do assets.addJs('theme://js/highlight.min.js') %}
       {{ assets.js()|raw }}
+
+      <script>
+        hljs.highlightAll();
+      </script>
     {% endblock %}
   </body>
 </html>
