@@ -1,0 +1,12 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block body %}
+  {{ block("content_blog") }}
+{% endblock %}
+
+{% block content_blog_body %}
+  {% include 'partials/blog/title.html.twig' %}
+  {% include 'partials/blog/date.html.twig' %}
+  {% include 'partials/blog/author.html.twig' %}
+  {{ page.content|raw }}
+{% endblock %}
