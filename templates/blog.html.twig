@@ -1,38 +1,43 @@
 {% extends 'partials/base.html.twig' %}
 
-{% set blog = page.find(header_var('blog_url')|defined(theme_var('blog-page'))) %}
-{% set collection = page.collection() %}
-{% set base_url = base_url|default(page.url) %}
-{% set pagination = pagination|default(page.collection.params.pagination) %}
+{#% if uri.param('category') %}
+  {% set page_title = theme_config.listing_title.taxonomy.category | default('Category: ') ~ uri.param('category') %}
+{% elseif uri.param('tag') %}
+  {% set page_title = theme_config.listing_title.taxonomy.tag | default('Tag: ') ~ uri.param('tag') %}
+{% else %}
+  {% set page_title = theme_config.listing_title.blog | default('Posts') %}
+{% endif %#}
 
-{% block body %}
-  {{ block("content_blog") }}
+{% set rss_url = page.url(true) ~ page.template() ~ ".rss" %}
+{% set atom_url = page.url(true) ~ page.template() ~ ".atom" %}
+
+{# {% block title %}
+  {{ page_title }} | {{ parent() }}
+{% endblock %} #}
+
+{% block feed %}
+  <link rel="alternate" href="{{ atom_url }}" type="application/atom+xml" title="Feed Atom"/>
+  <link rel="alternate" href="{{ rss_url }}" type="application/rss+xml" title="RSS"/>
 {% endblock %}
 
-{% block content_blog_body %}
-  <h1 class="page-header">Articles</h1>
-  <ul class="list-unstyled">
-    {% for child in collection %}
-      {% include 'partials/blog/list.html.twig' with {page: child} %}
-    {% endfor %}
-  </ul>
+{% block content %}
+  {% set collection = page.collection() %}
 
-  <nav aria-label="Page navigation" class="d-flex justify-content-between">
-    <div>
-      {% if pagination.hasPrev %}
-        {% set url = (base_url ~ pagination.params ~ pagination.prevUrl)|replace({'//':'/'}) %}
-        <span><i class="fa-solid fa-hand-point-left"></i></span>
-        <a rel="prev" href="{{ url }}" class="link-dark">plus récent</a>
-      {% endif %}
+  <section class="col-md-6">
+    <h1 class="page-header">Articles</h1>
+    <ul class="list-unstyled">
+      {% for child in collection %}
+        {% include 'partials/blog/list-item.html.twig' with { page: child } %}
+      {% endfor %}
+    </ul>
+
+    {# Pagination #}
+    {% include 'partials/blog/navigation.html.twig' %}
+
+  </section>
+  <section class="col-md-3">
+    <div class="mt-2">
+      {% include 'partials/blog/sidebar.html.twig' %}
     </div>
-
-    <div>
-      {% if pagination.hasNext %}
-        {% set url = (base_url ~ pagination.params ~ pagination.nextUrl)|replace({'//':'/'}) %}
-        <a rel="next" href="{{ url }}" class="link-dark">plus vieux</a>
-        <span><i class="fa-solid fa-hand-point-right"></i></span>
-      {% endif %}
-    </div>
-  </nav>
-
+  </section>
 {% endblock %}

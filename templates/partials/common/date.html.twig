@@ -1,0 +1,4 @@
+<time datetime="{{ page.date|date("c") }}">
+  <i class="fa fa-calendar"></i>
+  {{ page.date|localizeddate('long', 'none', grav.language.getActive, 'Europe/Paris') }}
+</time>

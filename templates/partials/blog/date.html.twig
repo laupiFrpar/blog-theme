@@ -1,8 +1,0 @@
-<time datetime="{{ page.date|date("c") }}">
-  <i class="fa fa-calendar"></i>
-  {# {{ page.date|date(system.pages.dateformat.short) }} #}
-{{ dump(grav.language) }}
-
-{{ page.date|localizeddate('long', 'none', grav.language.getActive, 'Europe/Paris') }}
-
-</time>

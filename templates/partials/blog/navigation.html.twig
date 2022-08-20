@@ -1,0 +1,25 @@
+{% set itemsInCollection = page.collection({'items': collection.params.items})|length %}
+{% set itemsPerPage = collection.params.limit %}
+{% set currentPage = uri.param('page')|default('1') %}
+{% set pagesInCollection = (itemsInCollection / itemsPerPage)|round(0, 'ceil') %}
+
+{% if itemsInCollection > itemsPerPage %}
+  <nav aria-label="Page navigation" class="d-flex justify-content-between">
+    <div>
+      {% if currentPage != '1' %}
+        <span>
+          <i class="fa-solid fa-hand-point-left"></i>
+        </span>
+        <a rel="prev" href="{{ page.url(true) ~ 'page' ~ system.param_sep ~ (currentPage - 1) }}" class="link-dark">Plus récent</a>
+      {% endif %}
+    </div>
+    <div>
+      {% if (currentPage + 1) <= pagesInCollection %}
+        <a rel="next" href="{{ page.url(true) ~ 'page' ~ system.param_sep ~ (currentPage + 1) }}" class="link-dark">Plus vieux</a>
+        <span>
+          <i class="fa-solid fa-hand-point-right"></i>
+        </span>
+      {% endif %}
+    </div>
+  </nav>
+{% endif %}

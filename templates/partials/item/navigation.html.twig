@@ -1,0 +1,18 @@
+<nav aria-label="Page navigation" class="d-flex justify-content-between">
+  <div>
+    {% if not page.isLast() %}
+      <span>
+        <i class="fa-solid fa-hand-point-left"></i>
+      </span>
+      <a href="{{ page.prevSibling().slug }}" class="link-dark">Article précédent</a>
+    {% endif %}
+  </div>
+  <div>
+    {% if not page.isFirst() %}
+      <a href="{{ page.nextSibling().slug }}" class="link-dark">Article suivant</a>
+      <span>
+        <i class="fa-solid fa-hand-point-right"></i>
+      </span>
+    {% endif %}
+  </div>
+</nav>

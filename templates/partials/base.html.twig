@@ -1,33 +1,42 @@
-{% use "blocks/base.html.twig" %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     {% block head %}
       <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+      {% include 'partials/metadata.html.twig' %}
+
+      <base href="{{ page.url(true, true) }}">
+
       <title>
-        {% if header.title %}
-          {{ header.title|e }}
-        {% endif %}
-        {{ site.title|e }}</title>
+        {% block title %}
+          {% if header.title %}
+            {{ header.title|e('html') }}
+            |
+          {% endif %}
+          {{ site.title|e('html') }}
+        {% endblock %}
+      </title>
     {% endblock %}
+
+    <link rel="canonical" href="{{ page.url(true, true) }}">
+
     {% block stylesheets %}
       {% do assets.addCss('theme://css/theme.css', 98) %}
       {% do assets.addCss('theme://css/vendor/highlight/github-dark-dimmed.min.css', 98) %}
     {% endblock %}
+    {{ assets.css()|raw }}
 
-    {% block assets deferred %}
-      {{ assets.css()|raw }}
-    {% endblock %}
-
+    {% block feed %}{% endblock %}
   </head>
   <body>
     {% block header %}
       <nav class="navbar">
         <div class="container">
-          <a href="/" class="navbar-brand">
-            {{ config.site.title|e }}
+          <a href="{{ home_url }}" class="navbar-brand">
+            {{ site.title|e }}
           </a>
         </div>
       </nav>
@@ -35,11 +44,17 @@
 
     {% block body %}
       <div class="container">
-        {{ block('content_surround') }}
+        <div class="row justify-content-center mt-5">
+          {% block content %}{% endblock %}
+        </div>
       </div>
     {% endblock %}
 
-    {% block footer %}{% endblock %}
+    {% block footer %}
+      <footer class="footer">
+        {% include 'partials/footer.html.twig' %}
+      </footer>
+    {% endblock %}
 
     {% block javascripts %}
       {% do assets.addJs('theme://js/bootstrap.min.js') %}
