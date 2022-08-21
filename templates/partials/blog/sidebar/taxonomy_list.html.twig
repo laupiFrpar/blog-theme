@@ -1,0 +1,39 @@
+{% set taxlist = taxonomylist.get() %}
+{% if taxlist %}
+  {% if taxonomy == 'category' %}
+    {% set taxlist = taxlist[taxonomy]|ksort %}
+  {% else %}
+    {% set taxlist = taxlist[taxonomy] %}
+  {% endif %}
+
+  <section class="mb-4">
+    <h4>{{ title }}</h4>
+    {% if taxonomy == 'category' %}<ul class="list-unstyled">{% endif %}
+
+    {% for tax,value in taxlist %}
+      {% set isActive = uri.param(taxonomy) == tax %}
+      {% if isActive %}
+        {% set url = base_url %}
+        {% set active_class = taxonomy == 'category' ? 'text-decoration-underline text-success' : 'btn-success' %}
+      {% else %}
+        {% set url = base_url ~ '/' ~ taxonomy ~ config.system.param_sep ~ tax %}
+        {% set active_class = taxonomy == 'category' ? 'text-decoration-none' : 'btn-outline-dark' %}
+
+      {% endif %}
+
+      {% if taxonomy == 'category' %}
+        <li class="active">
+          <i class="fa-solid fa-folder"></i>
+          <a class="link-dark {{ active_class }}" href="{{ url }}">
+            {{ tax|capitalize }}
+          </a>
+        </li>
+      {% else %}
+        <a class="btn btn-sm {{ active_class }} mb-2" href="{{ url }}">
+          {{ tax }}
+        </a>
+      {% endif %}
+    {% endfor %}
+    {% if taxonomy == 'category' %}</ul>{% endif %}
+  </section>
+{% endif %}

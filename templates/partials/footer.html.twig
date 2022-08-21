@@ -1,27 +1,47 @@
-<section class="container centered">
-  <div class="about">
-    <ul>
-      {% for type, meta in theme_config.social %}
-        <li>
-          <a href="{{ meta.url }}" {% if meta.rel %} rel="{{ meta.rel }}" {% endif %} class="btn btn-link" title="{{ meta.title }}">
-            <i class="{{ meta.icon }}"></i>
-          </a>
-          {% if loop.last == false %}
-            <span class="separator">•</span>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+<section class="d-flex justify-content-center">
+  <ul class="list-group list-group-horizontal list-unstyled">
+    <li >
+      <a
+        href="https://github.com/laupiFrpar"
+        rel="me"
+        class="btn btn-link btn-lg link-dark"
+        title="Github"
+      >
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <span>•</span>
+    </li>
+    <li>
+      <a
+        href="https://www.linkedin.com/in/pierrelouislaunay/"
+        rel="me"
+        class="btn btn-link btn-lg link-dark"
+        title="Linkedin"
+      >
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <span>•</span>
+    </li>
+    <li>
+      <a
+        href="https://twitter.com/laupiFrpar"
+        rel="me"
+        class="btn btn-link btn-lg link-dark"
+        title="Twitter"
+      >
+        <i class="fa-brands fa-twitter"></i>
+      </a>
+    </li>
+  </ul>
 </section>
-<section class="container">
-  <span class="copyright">
-    ©
-    {% if theme_config.footer.copyright_start_year %}
-      {{ theme_config.footer.copyright_start_year }}
-      -
-    {% endif %}
-    {{ "now"|date("Y") }}
-    <a href="{{ home_url }}">{{ theme_config.footer.copyright }}</a>
+<section>
+  <span>
+    ©2022 {% if "now"|date("Y") > 2022 %} - {{ "now"|date("Y") }}{% endif %}
+    <a
+      href="{{ home_url }}"
+      class="link-dark"
+    >
+      <strong>Lopi's blog</strong>
+    </a>
   </span>
 </section>

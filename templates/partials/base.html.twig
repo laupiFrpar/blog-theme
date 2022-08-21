@@ -43,7 +43,7 @@
     {% endblock %}
 
     {% block body %}
-      <div class="container">
+      <div id="content-body" class="container">
         <div class="row justify-content-center mt-5">
           {% block content %}{% endblock %}
         </div>
@@ -51,7 +51,7 @@
     {% endblock %}
 
     {% block footer %}
-      <footer class="footer">
+      <footer id="footer" class="container text-center">
         {% include 'partials/footer.html.twig' %}
       </footer>
     {% endblock %}

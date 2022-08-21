@@ -1,19 +1,13 @@
-<div class="sidebar sticky-top">
-  <div class="p-4 mb-3 bg-light rounded">
-    <h4>À propos</h4>
-    <p class="mb-0">
-      Je vais traiter divers sujets comme la santé, technique, cinéma, livres
-      et bien d'autres sujets qui tient à cœur. Les articles ne paraîtront pas
-      régulièrement.
-    </p>
-  </div>
-  <div>
+<aside class="sidebar sticky-top">
+  {% include 'partials/blog/sidebar/taxonomy_list.html.twig' with { taxonomy: 'category', title: 'Catégorie'} %}
+  {% include 'partials/blog/sidebar/taxonomy_list.html.twig' with { taxonomy: 'tag', title: 'Mots clés'} %}
+  <section>
     <h4>Flux</h4>
-    <a class="btn btn-outline-dark" role="button" href="{{ atom_url }}">
+    <a class="btn btn-outline-dark btn-sm" role="button" href="{{ atom_url }}">
       <i class="fa fa-rss-square"></i>
       Atom 1.0</a>
-    <a class="btn btn-outline-dark" href="{{ rss_url }}">
+    <a class="btn btn-outline-dark btn-sm" href="{{ rss_url }}">
       <i class="fa fa-rss-square"></i>
       RSS</a>
-  </div>
-</div>
+  </section>
+</aside>
