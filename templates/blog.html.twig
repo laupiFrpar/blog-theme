@@ -23,7 +23,7 @@
 {% block content %}
   {% set collection = page.collection() %}
 
-  <section class="col-md-6">
+  <section class="col-md-7">
     <h1 class="page-header">Articles</h1>
     <ul id="list-posts" class="list-unstyled">
       {% for child in collection %}
@@ -35,7 +35,7 @@
     {% include 'partials/blog/navigation.html.twig' %}
 
   </section>
-  <section class="col-md-3">
+  <section class="col-md-2">
     <div class="mt-2">
       {% include 'partials/blog/sidebar.html.twig' %}
     </div>

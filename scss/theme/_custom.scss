@@ -45,15 +45,13 @@ blockquote {
 }
 
 h1 {
-  &.page-header {
-    &::after {
-      content: "";
-      display: block;
-      width: 4em;
-      margin-top: 0.6em;
-      margin-bottom: 0.6em;
-      border-bottom: .125em solid forestgreen;
-    }
+  &::after {
+    content: "";
+    display: block;
+    width: 4em;
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    border-bottom: .125em solid forestgreen;
   }
 }
 
