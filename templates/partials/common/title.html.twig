@@ -1,10 +1,15 @@
+{% set with_title_element = with_title_element | defined(true) %}
 {% set title_level = title_level ?: 'h2' %}
 {% set is_link = is_link | defined(false) %}
 
-<{{title_level}} class="pt-1">
+{% if with_title_element %}
+<{{ title_level }} class="pt-1">
+{% endif %}
   {% if is_link %}
-    <a href="{{ page.url }}" class="link-dark">{{ page.title }}</a>
+    <a href="{{ page.url }}">{{ page.title }}</a>
   {% else %}
     {{ page.title }}
   {% endif %}
-</{{title_level}}>
+{% if with_title_element %}
+</{{ title_level }}>
+{% endif %}

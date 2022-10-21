@@ -12,16 +12,16 @@
       </ol>
     </nav>
     <header>
-      {% include 'partials/common/title.html.twig' with { 'title_level': 'h1' } %}
-      <div id="metadata" class="mb-4">
+      {% include 'partials/common/title.html.twig' with { title_level: 'h1' } %}
+      <section id="metadata" class="mb-4">
         {% include 'partials/common/date.html.twig' %}
         {% include 'partials/item/taxonomy.html.twig' %}
-      </div>
+      </section>
     </header>
 
-    <div id="content">
+    <section id="content">
       {{ page.content|raw }}
-    </div>
+    </section>
 
     {% include 'partials/item/navigation.html.twig' %}
   </article>

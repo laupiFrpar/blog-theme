@@ -1,6 +1,6 @@
 <li class="mb-3">
   {# Date #}
-  <span class="me-5">{% include 'partials/common/date.html.twig' %}</span>
+  {% include 'partials/common/date.html.twig' %}
   {# Title #}
-  {% include 'partials/common/title.html.twig' with {title_level: 'span', is_link: true} %}
+  {% include 'partials/common/title.html.twig' with {with_title_element: false, is_link: true} %}
 </li>
