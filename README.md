@@ -5,3 +5,23 @@ The **Lopi Theme** Theme is for [Grav CMS](http://github.com/getgrav/grav).  Thi
 ## Description
 
 Personal theme
+
+## Installation
+
+```
+npm i
+```
+
+### Install Sass
+
+```
+brew install sass/sass/sass
+```
+
+## Compile the SCSS for production
+
+`npm run compile`
+
+## Development
+
+`npm run watch`
