@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "copy-vendor": "./bin/copy-vendor",
-    "compile": "wt compile scss -b css --source-map=false --style=compressed",
+    "compile": "sass scss:css --no-source-map --style=compressed",
     "lint:style": "stylelint 'scss/*.scss'",
-    "watch": "wt watch scss scss/vendor -b css --source-map=false --style=nested"
+    "watch": "sass --watch scss:css --no-source-map"
   },
   "author": "Pierre-Louis Launay <lopi@marinlaunay.fr>",
   "license": "MIT",
